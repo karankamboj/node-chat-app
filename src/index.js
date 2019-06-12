@@ -39,18 +39,22 @@ io.on('connection', (socket) => { //socket contain info of connection
    
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
+        console.log(user)
         const filter = new Filter()
         if(filter.isProfane(message)){
             return callback('Profanity not allowed')
         }
 
-        io.to(user.room).emit('message', generateMessage(user.username,message))
+        socket.broadcast.to(user.room).emit('message', generateMessage(user.username,message))
+        socket.emit('sentMessage', generateMessage(user.username,message))
+        
         callback()
     })
 
     socket.on('sendLocation', ( {latitude, longitude}, callback ) => {
         const user = getUser(socket.id)
-        io.to(user.room).emit('locationMessage', generateLocationMessage(user.username, 'http://google.com/maps?q=' + latitude+',' + longitude))
+        socket.broadcast.to(user.room).emit('locationMessage', generateLocationMessage(user.username, 'http://google.com/maps?q=' + latitude+',' + longitude))
+        socket.emit('sentlocationMessage',generateLocationMessage(user.username, 'http://google.com/maps?q=' + latitude+',' + longitude))
         callback()
     })
 

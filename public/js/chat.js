@@ -10,7 +10,9 @@ const $messages = document.querySelector('#messages')
 
 //Templates
 const messageTemplate = document.querySelector('#message-template').innerHTML
+const sentMessageTemplate = document.querySelector('#sent-message-template').innerHTML
 const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
+const sentLocationMessageTemplate = document.querySelector('#sent-location-message-template').innerHTML
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
 //Options
@@ -39,6 +41,18 @@ const autoscroll = () => {
     }
 }
 
+socket.on('sentMessage', (message) => {
+    console.log(message)
+    const html = Mustache.render(sentMessageTemplate, {
+        username: message.username,
+        message: message.text,
+        createdAt: moment(message.createdAt).format('hh:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+    autoscroll()
+
+})
+
 socket.on('message', (message) => {
     console.log(message)
     const html = Mustache.render(messageTemplate, {
@@ -49,6 +63,17 @@ socket.on('message', (message) => {
     $messages.insertAdjacentHTML('beforeend', html)
     autoscroll()
 
+})
+
+socket.on('sentlocationMessage', (message) => {
+    console.log(message)
+    const html = Mustache.render(sentLocationMessageTemplate, {
+        username: message.username,
+        url: message.url,
+        createdAt: moment(message.createdAt).format('hh:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+    autoscroll()
 })
 
 socket.on('locationMessage', (message) => {

@@ -3,6 +3,7 @@
         <title> Chat App</title>
         <link rel='icon' href="/img/favicon.png">
         <link rel='stylesheet' href='/css/styles.min.css'>
+        <link rel='stylesheet' href='/css/karan.css'>
         
     </head>
     <body>
@@ -12,7 +13,9 @@
            </div>
 
            <div class='chat__main'>
-            <div id='messages' class="chat__messages"></div>
+            <div id='messages' class="chat__messages">
+
+            </div>
 
             <div class="compose">
                 <form id="message-form">
@@ -27,7 +30,17 @@
 
 
         <script id='message-template' type="text/html">
-            <div class="message">
+            <div class="msg_cotainer1">
+                <p> 
+                    <span class="message__name"> {{username}} </span>
+                    <span class="message__meta"> {{createdAt}} </span>
+                </p>
+                <p> {{message}} </p>
+            </div>
+        </script>
+
+        <script id='sent-message-template' type="text/html">
+            <div class="msg_cotainer2">
                 <p> 
                     <span class="message__name"> {{username}} </span>
                     <span class="message__meta"> {{createdAt}} </span>
@@ -37,12 +50,22 @@
         </script>
 
         <script id='location-message-template' type="text/html">
-            <div class="message">
+            <div class="msg_cotainer1">
                 <p> 
                     <span class="message__name"> {{username}} </span>
                     <span class="message__meta"> {{createdAt}} </span>
                 </p>
-                <p><a href='{{url}}' target="_blank">Location Link  <a></p>
+                <p><a href='{{url}}' target="_blank"><center><img src="https://www.pinclipart.com/picdir/big/79-798120_orange-map-pin-orange-location-icon-png-clipart.png" height="30px"> Current Location </center> <a></p>
+            </div>
+        </script>
+
+        <script id='sent-location-message-template' type="text/html">
+            <div class="msg_cotainer2">
+                <p> 
+                    <span class="message__name"> {{username}} </span>
+                    <span class="message__meta"> {{createdAt}} </span>
+                </p>
+                <p><a href='{{url}}' target="_blank"><center><img src="https://www.pinclipart.com/picdir/big/79-798120_orange-map-pin-orange-location-icon-png-clipart.png" height="30px"> Current Location </center> <a></p>
             </div>
         </script>
 
