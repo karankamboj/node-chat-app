@@ -1,8 +1,9 @@
 .msg_cotainer1{
+    width:300px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 10px;
-    margin-right: 750px;
+    margin-right: 10px;
     border-radius: 25px;
     background-color: #82ccdd;
     padding: 10px;
@@ -10,12 +11,14 @@
 }
 
 .msg_cotainer2{
+    width:300px;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 750px;
+    margin-left: 10px;
     margin-right: 10px;
     border-radius: 25px;
     background-color: #00FF00;
     padding: 10px;
     position: relative;
+    right:-55%;
 }
